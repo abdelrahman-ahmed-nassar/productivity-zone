@@ -7,6 +7,9 @@ function App() {
   return (
     <>
       <Switch>
+        <Route path="/productivity-zone">
+          <Redirect to="/"></Redirect>
+        </Route>
         <Route path="/" exact>
           <Home />
         </Route>
