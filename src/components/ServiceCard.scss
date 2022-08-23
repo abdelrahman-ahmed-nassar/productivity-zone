@@ -1,0 +1,149 @@
+.service-card {
+  overflow: hidden;
+  position: relative;
+  height: 150px;
+  border-radius: 50;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+
+  &--up {
+    height: 50%;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 110%;
+      height: 70px;
+      bottom: -24px;
+      left: 0;
+      z-index: -1;
+      transform: rotate(2deg);
+      @media (max-width: 776px) {
+        bottom: -19px;
+        transform: rotate(3deg);
+        -webkit-transform: rotate(3deg);
+        -moz-transform: rotate(3deg);
+        -ms-transform: rotate(3deg);
+        -o-transform: rotate(3deg);
+      }
+    }
+
+    h2 {
+      color: #eee;
+      margin-left: 20px;
+      padding-top: 10px;
+    }
+  }
+
+  &--up--red {
+    background-color: rgb(199, 78, 73);
+    &::after {
+      background-color: rgb(205, 96, 92);
+    }
+  }
+
+  &--up--green {
+    background-color: #37b24d;
+    &::after {
+      background-color: #40c057;
+      // 00e6ac
+    }
+  }
+  &--up--blue {
+    background-color: #228be6;
+    &::after {
+      background-color: #339af0;
+    }
+  }
+
+  &--up--pink {
+    background-color: #e64980;
+    &::after {
+      background-color: #f06595;
+    }
+  }
+
+  &--up--yellow {
+    background-color: #f59f00;
+    &::after {
+      background-color: #fab005;
+    }
+  }
+
+  &--up--gray {
+    background-color: #868e96;
+    &::after {
+      background-color: #adb5bd;
+    }
+  }
+
+  &--up--orange {
+    background-color: #fd7e14;
+    &::after {
+      background-color: #ff922b;
+    }
+  }
+
+  &--up--teal {
+    background-color: #12b886;
+    &::after {
+      background-color: #20c997;
+    }
+  }
+
+  &--down {
+    height: 50%;
+    padding-top: 30px;
+    .cta {
+      display: block;
+      padding: 1px;
+      display: flex;
+      width: 80px;
+      margin-left: 20px;
+      align-items: center;
+      border-radius: 5px;
+      cursor: pointer;
+      &--icon {
+        flex-basis: 40%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      &--link {
+        text-align: center;
+        padding: 0 10px;
+        flex-basis: 60%;
+      }
+    }
+  }
+
+  &--img {
+    position: absolute;
+    width: 75px;
+    height: 75px;
+    background-color: white;
+    top: calc(50% - 22px);
+    right: 30px;
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -ms-border-radius: 100%;
+    -o-border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      max-height: 90%;
+    }
+  }
+}
+
+.serviceRed {
+  &::after {
+  }
+}

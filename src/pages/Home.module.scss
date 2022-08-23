@@ -1,0 +1,148 @@
+//* HERO SECTION
+.hero {
+  height: 100vh;
+  width: 80vw;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.img--left,
+.img--right {
+  max-height: 458px;
+}
+.logo {
+  height: 300px;
+}
+.center {
+  text-align: center;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  .slogan {
+    color: #333;
+    font-size: 30px;
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+}
+
+.hero-cta {
+  display: inline-block;
+  cursor: pointer;
+  color: #fff;
+  padding: 7.5px 15px;
+  font-size: 22px;
+  background-color: var(--main-color);
+  margin-top: 50px;
+  border-radius: 9px;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  -ms-border-radius: 9px;
+  -o-border-radius: 9px;
+}
+
+//* HERO MOBILE VERSION
+
+.img--center {
+  height: 183px;
+  margin-bottom: 30px;
+  flex-basis: 1;
+}
+
+@media (max-width: 1000px) {
+  .hero {
+    flex-direction: column;
+    justify-content: start;
+    padding-top: 64px;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 700px) {
+  .logo {
+    height: 220px;
+  }
+  .img--center {
+    height: 150px;
+    margin-bottom: 35px;
+  }
+  .center {
+    width: 95%;
+  }
+}
+
+@media (max-height: 750px) {
+  .hero {
+    height: auto;
+    padding-top: 10px;
+  }
+}
+
+/////////////////////////////////////////////////
+
+// services
+
+.services {
+  height: 100vh;
+  h1 {
+    color: #333;
+    display: block;
+    margin: 0 auto;
+    padding: 0 0 50px 0;
+    width: fit-content;
+    text-align: center;
+    font-size: 64px;
+    font-weight: bold;
+    position: relative;
+    @media (max-width: 776px) {
+      font-size: 38px;
+      padding: 30px 0;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      top: 50%;
+      left: -30%;
+      //background-image: linear-gradient(to right, #00acc1, #01baef);
+      background-color: #333;
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      top: 50%;
+      right: -30%;
+      // background-image: linear-gradient(to right, #00acc1, #01baef);
+      background-color: #333;
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+    }
+  }
+}
+
+.services__container {
+  width: 90%;
+  margin: 20px auto;
+  padding-bottom: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 75px;
+  @media (min-width: 1000px) {
+    width: 60%;
+  }
+}
