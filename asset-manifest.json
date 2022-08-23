@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/productivity-zone/static/css/main.9f7bdbf9.css",
+    "main.js": "/productivity-zone/static/js/main.10efe163.js",
+    "static/media/logo.png": "/productivity-zone/static/media/logo.28749b09109ee6e7f106.png",
+    "static/media/notes.png": "/productivity-zone/static/media/notes.f64bfe7f0cead51fae13.png",
+    "static/media/goals.png": "/productivity-zone/static/media/goals.692c283f0f6dde0dbe08.png",
+    "static/media/ui-pattern.png": "/productivity-zone/static/media/ui-pattern.dab700ffff994f904a40.png",
+    "static/media/pomodoro.png": "/productivity-zone/static/media/pomodoro.80d1f8c337e6a35aff9b.png",
+    "static/media/count-down.png": "/productivity-zone/static/media/count-down.fe6f7fe1ae70ba2066e9.png",
+    "static/media/welcome-left.png": "/productivity-zone/static/media/welcome-left.469455989e2f4ae2d6b7.png",
+    "static/media/welcome-right.png": "/productivity-zone/static/media/welcome-right.c28fce19c0030eb96000.png",
+    "static/media/welcome-center.png": "/productivity-zone/static/media/welcome-center.100bd9d93ccfaeeffcf4.png",
+    "static/media/sand.png": "/productivity-zone/static/media/sand.b81282dcc2b99fedfc10.png",
+    "index.html": "/productivity-zone/index.html",
+    "main.9f7bdbf9.css.map": "/productivity-zone/static/css/main.9f7bdbf9.css.map",
+    "main.10efe163.js.map": "/productivity-zone/static/js/main.10efe163.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9f7bdbf9.css",
+    "static/js/main.10efe163.js"
+  ]
+}
