@@ -7,10 +7,7 @@ function App() {
   return (
     <>
       <Switch>
-        <Route path="/productivity-zone">
-          <Redirect to="/"></Redirect>
-        </Route>
-        <Route path="/" exact>
+        <Route path="/productivity-zone" exact>
           <Home />
         </Route>
         <Route path="/pomodoro">
