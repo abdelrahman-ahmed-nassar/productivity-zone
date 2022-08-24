@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/productivity-zone/static/css/main.3d0b77df.css",
-    "main.js": "/productivity-zone/static/js/main.b80355cb.js",
+    "main.css": "/productivity-zone/static/css/main.800feae6.css",
+    "main.js": "/productivity-zone/static/js/main.b682a77c.js",
     "static/media/alarm.mp3": "/productivity-zone/static/media/alarm.a28b8b3e0e22b1ac437e.mp3",
     "static/media/logo.png": "/productivity-zone/static/media/logo.28749b09109ee6e7f106.png",
     "static/media/notes.png": "/productivity-zone/static/media/notes.f64bfe7f0cead51fae13.png",
@@ -13,12 +13,13 @@
     "static/media/welcome-right.png": "/productivity-zone/static/media/welcome-right.c28fce19c0030eb96000.png",
     "static/media/welcome-center.png": "/productivity-zone/static/media/welcome-center.100bd9d93ccfaeeffcf4.png",
     "static/media/sand.png": "/productivity-zone/static/media/sand.b81282dcc2b99fedfc10.png",
+    "static/media/click.mp3": "/productivity-zone/static/media/click.71a997c63596c36527bd.mp3",
     "index.html": "/productivity-zone/index.html",
-    "main.3d0b77df.css.map": "/productivity-zone/static/css/main.3d0b77df.css.map",
-    "main.b80355cb.js.map": "/productivity-zone/static/js/main.b80355cb.js.map"
+    "main.800feae6.css.map": "/productivity-zone/static/css/main.800feae6.css.map",
+    "main.b682a77c.js.map": "/productivity-zone/static/js/main.b682a77c.js.map"
   },
   "entrypoints": [
-    "static/css/main.3d0b77df.css",
-    "static/js/main.b80355cb.js"
+    "static/css/main.800feae6.css",
+    "static/js/main.b682a77c.js"
   ]
 }
