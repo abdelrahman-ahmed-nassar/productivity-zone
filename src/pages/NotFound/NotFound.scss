@@ -1,0 +1,15 @@
+.not-found {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  h2 {
+    font-size: 60px;
+    color: #222;
+    @media (max-width: 776px) {
+      font-size: 32px;
+    }
+  }
+}

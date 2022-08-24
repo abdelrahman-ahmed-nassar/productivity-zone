@@ -1,24 +1,24 @@
 import React from "react";
 
-import ServiceCard from "../components/ServiceCard";
+import ServiceCard from "../../components/ServiceCard";
 import { FcCheckmark, FcSafe, FcCalculator } from "react-icons/fc";
-import pomodoro from "../assets/imgs/pomodoro.png";
-import goalsImg from "../assets/imgs/goals.png";
-import notesImg from "../assets/imgs/notes.png";
-import countDown from "../assets/imgs/count-down.png";
-import sandImg from "../assets/imgs/sand.png";
+import pomodoro from "../../assets/imgs/pomodoro.png";
+import goalsImg from "../../assets/imgs/goals.png";
+import notesImg from "../../assets/imgs/notes.png";
+import countDown from "../../assets/imgs/count-down.png";
+import sandImg from "../../assets/imgs/sand.png";
 
 // assets
-import leftImg from "../assets/imgs/welcome-left.png";
-import logo from "../assets/imgs/logo.png";
-import rightImg from "../assets/imgs/welcome-right.png";
-import centerImg from "../assets/imgs/welcome-center.png";
+import leftImg from "../../assets/imgs/welcome-left.png";
+import logo from "../../assets/imgs/logo.png";
+import rightImg from "../../assets/imgs/welcome-right.png";
+import centerImg from "../../assets/imgs/welcome-center.png";
 
 // styles
 import classes from "./Home.module.scss";
 
 // hooks
-import useWindowSize from "../hooks/use-window-size";
+import useWindowSize from "../../hooks/use-window-size";
 const Home = () => {
   const { width, height } = useWindowSize();
 
@@ -59,7 +59,6 @@ const Home = () => {
       </section>
       {/* services Section */}
       <section className={classes["services"]} id="services">
-        <h1>Tools</h1>
         <div className={classes["services__container"]}>
           <ServiceCard
             title="pomodoro timer"
