@@ -1,30 +1,34 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./Pomodoro.scss";
 import { BsFillCheckCircleFill } from "react-icons/bs";
-import alarm from "../../assets/media/alarm.mp3";
+import alarmSound from "../../assets/media/alarm.mp3";
+import clickSound from "../../assets/media/click.mp3";
+import useLocalStorage from "../../hooks/use-local-storage-hook";
+function getTime(d) {
+  d = Number(d);
+  var m = Math.floor((d % 3600) / 60);
+  var s = Math.floor((d % 3600) % 60);
+
+  var mDisplay = m > 0 ? m : "00";
+  var sDisplay = s > 0 ? s : "00";
+  return mDisplay + ":" + sDisplay;
+}
+
 const Pomodoro = () => {
-  const pomodoroTime = 60;
-  const BreakTime = 30;
+  const [pomodoroTime, setPomodoroTime] = useLocalStorage("pomodoro", 1500);
+  const [breakTime, setBreakTime] = useLocalStorage("break", 300);
   const [isBlue, setIsBlue] = useState(false);
   const [isRunning, setIsRunning] = useState(false);
   const [timer, setTimer] = useState(pomodoroTime);
   const alarmRef = useRef();
-
-  function getTime(d) {
-    d = Number(d);
-    var m = Math.floor((d % 3600) / 60);
-    var s = Math.floor((d % 3600) % 60);
-
-    var mDisplay = m > 0 ? m : "00";
-    var sDisplay = s > 0 ? s : "00";
-    return mDisplay + ":" + sDisplay;
-  }
+  const clickRef = useRef();
 
   const handleBreakButton = () => {
     setIsBlue(true);
     setIsRunning(false);
-    setTimer(BreakTime);
+    setTimer(breakTime);
   };
+
   const handlePomodoroButton = () => {
     setIsBlue(false);
     setIsRunning(false);
@@ -32,9 +36,22 @@ const Pomodoro = () => {
   };
 
   const handleStartButton = () => {
+    clickRef.current.play();
     setIsRunning((state) => {
       return !state;
     });
+  };
+
+  const blueDropMenuHandler = (e) => {
+    setIsRunning(false);
+    setBreakTime(e.target.value);
+    setTimer(e.target.value);
+  };
+
+  const redDropMenuHandler = (e) => {
+    setIsRunning(false);
+    setPomodoroTime(e.target.value);
+    setTimer(e.target.value);
   };
 
   useEffect(() => {
@@ -42,7 +59,7 @@ const Pomodoro = () => {
     if (timer === 0) {
       setIsBlue((state) => !state);
       setIsRunning((state) => !state);
-      setTimer(isBlue ? pomodoroTime : BreakTime);
+      setTimer(isBlue ? pomodoroTime : breakTime);
       alarmRef.current.play();
     }
 
@@ -55,17 +72,43 @@ const Pomodoro = () => {
 
   return (
     <div className={`pomodoro ${isBlue && "blue"}`}>
-      <audio
-        ref={alarmRef}
-        controls
-        style={{ display: "none", visibility: "hidden" }}
-      >
-        <source src={alarm} type="audio/mpeg"></source>
+      <audio ref={alarmRef} style={{ display: "none", visibility: "hidden" }}>
+        <source src={alarmSound} type="audio/mpeg"></source>
+      </audio>
+      <audio ref={clickRef} style={{ display: "none", visibility: "hidden" }}>
+        <source src={clickSound} type="audio/mpeg"></source>
       </audio>
       <div className="pomodoro__header">
-        <BsFillCheckCircleFill fontSize={18} color="white" />
+        <div>
+          <BsFillCheckCircleFill fontSize={18} color="white" />
 
-        <h1>Pomodoro timer</h1>
+          <h1>Pomodoro timer</h1>
+        </div>
+        <div className="select-dropdown">
+          {!isBlue && (
+            <select
+              onChange={redDropMenuHandler}
+              defaultValue={pomodoroTime ? pomodoroTime : 1500}
+            >
+              <option value={10}>1</option>
+              <option value={1500}>25</option>
+              <option value={2100}>35</option>
+              <option value={3000}>50</option>
+            </select>
+          )}
+
+          {isBlue && (
+            <select
+              onChange={blueDropMenuHandler}
+              defaultValue={breakTime ? breakTime : 300}
+            >
+              <option value={5}>1</option>
+              <option value={300}>5</option>
+              <option value={600}>10</option>
+              <option value={900}>15</option>
+            </select>
+          )}
+        </div>
       </div>
       <div className="pomodoro__container">
         <div className="pomodoro__container--header">
@@ -73,7 +116,6 @@ const Pomodoro = () => {
             className={`${isBlue || "active"}`}
             onClick={handlePomodoroButton}
           >
-            {" "}
             Pomodoro
           </button>
           <button
