@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useReducer } from "react";
 import "./Pomodoro.scss";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import alarmSound from "../../assets/media/alarm.mp3";
 import clickSound from "../../assets/media/click.mp3";
 import useLocalStorage from "../../hooks/use-local-storage-hook";
+
 function getTime(d) {
   d = Number(d);
   var m = Math.floor((d % 3600) / 60);
@@ -17,30 +18,23 @@ function getTime(d) {
 const Pomodoro = () => {
   const [pomodoroTime, setPomodoroTime] = useLocalStorage("pomodoro", 1500);
   const [breakTime, setBreakTime] = useLocalStorage("break", 300);
-  const [isBlue, setIsBlue] = useState(false);
+  const [isTakingShortBreak, setIsTakingShortBreak] = useState(false);
   const [isRunning, setIsRunning] = useState(false);
   const [timer, setTimer] = useState(pomodoroTime);
+  const [sessions, setSessions] = useState(1);
+  const [progress, setProgress] = useState(0);
   const alarmRef = useRef();
   const clickRef = useRef();
 
-  const handleBreakButton = () => {
-    setIsBlue(true);
-    setIsRunning(false);
-    setTimer(breakTime);
-  };
-
-  const handlePomodoroButton = () => {
-    setIsBlue(false);
-    setIsRunning(false);
-    setTimer(pomodoroTime);
-  };
-
-  const handleStartButton = () => {
+  // play -- stop
+  const startButtonHandler = () => {
     clickRef.current.play();
     setIsRunning((state) => {
       return !state;
     });
   };
+
+  // time settings
 
   const blueDropMenuHandler = (e) => {
     setIsRunning(false);
@@ -54,12 +48,29 @@ const Pomodoro = () => {
     setTimer(e.target.value);
   };
 
+  // red -- blue
+
+  const pomodoroTabHandler = () => {
+    setIsTakingShortBreak(false);
+    setIsRunning(false);
+    setTimer(pomodoroTime);
+  };
+
+  const breakTabHandler = () => {
+    setIsTakingShortBreak(true);
+    setIsRunning(false);
+    setTimer(breakTime);
+  };
+
+  // timer
   useEffect(() => {
     if (!isRunning) return;
     if (timer === 0) {
-      setIsBlue((state) => !state);
+      if (isTakingShortBreak) setSessions((state) => state + 1);
+
+      setIsTakingShortBreak((state) => !state);
       setIsRunning((state) => !state);
-      setTimer(isBlue ? pomodoroTime : breakTime);
+      setTimer(isTakingShortBreak ? pomodoroTime : breakTime);
       alarmRef.current.play();
     }
 
@@ -70,8 +81,18 @@ const Pomodoro = () => {
     return () => clearInterval(definer);
   }, [isRunning, timer]);
 
+  // progress bar
+  useEffect(() => {
+    const root = document.querySelector(":root");
+    root.style.setProperty("--progress", `${progress}%`);
+  }, [progress]);
+
+  useEffect(() => {
+    setProgress(100 - (timer / pomodoroTime) * 100);
+  }, [timer, pomodoroTime]);
+
   return (
-    <div className={`pomodoro ${isBlue && "blue"}`}>
+    <div className={`pomodoro ${isTakingShortBreak && "blue"}`}>
       <audio ref={alarmRef} style={{ display: "none", visibility: "hidden" }}>
         <source src={alarmSound} type="audio/mpeg"></source>
       </audio>
@@ -81,28 +102,27 @@ const Pomodoro = () => {
       <div className="pomodoro__header">
         <div>
           <BsFillCheckCircleFill fontSize={18} color="white" />
-
           <h1>Pomodoro timer</h1>
         </div>
         <div className="select-dropdown">
-          {!isBlue && (
+          {!isTakingShortBreak && (
             <select
               onChange={redDropMenuHandler}
               defaultValue={pomodoroTime ? pomodoroTime : 1500}
             >
-              <option value={10}>1</option>
+              <option value={10}>try</option>
               <option value={1500}>25</option>
               <option value={2100}>35</option>
               <option value={3000}>50</option>
             </select>
           )}
 
-          {isBlue && (
+          {isTakingShortBreak && (
             <select
               onChange={blueDropMenuHandler}
               defaultValue={breakTime ? breakTime : 300}
             >
-              <option value={5}>1</option>
+              <option value={5}>try</option>
               <option value={300}>5</option>
               <option value={600}>10</option>
               <option value={900}>15</option>
@@ -110,17 +130,18 @@ const Pomodoro = () => {
           )}
         </div>
       </div>
+      <div className="progress-bar" data-progress={"50"}></div>
       <div className="pomodoro__container">
         <div className="pomodoro__container--header">
           <button
-            className={`${isBlue || "active"}`}
-            onClick={handlePomodoroButton}
+            className={`${isTakingShortBreak || "active"}`}
+            onClick={pomodoroTabHandler}
           >
             Pomodoro
           </button>
           <button
-            className={`${isBlue && "active"}`}
-            onClick={handleBreakButton}
+            className={`${isTakingShortBreak && "active"}`}
+            onClick={breakTabHandler}
           >
             Break
           </button>
@@ -129,14 +150,20 @@ const Pomodoro = () => {
           <div className="timer">{getTime(timer)}</div>
           <div className="controller">
             <button
-              className={`${isBlue && "blue"} ${isRunning ? "stop" : "start"}`}
-              onClick={handleStartButton}
+              className={`${isTakingShortBreak && "blue"} ${
+                isRunning ? "stop" : "start"
+              }`}
+              onClick={startButtonHandler}
             >
               {isRunning ? "stop" : "start"}
             </button>
           </div>
         </div>
       </div>
+      <p className="completed-sessions">#{sessions}</p>
+      <p className="motivation-word">
+        {isTakingShortBreak ? "Time for a break!" : "Time to focus!"}
+      </p>
     </div>
   );
 };

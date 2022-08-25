@@ -20,7 +20,28 @@
     }
     border-bottom: 1px solid rgba(51, 51, 51, 0.1);
   }
-
+  .progress-bar {
+    margin: 0 auto;
+    max-width: 620px;
+    height: 2px;
+    background-color: rgba(51, 51, 51, 0.1);
+    color: #fff;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: var(--progress);
+      height: 1.5px;
+      background-color: #fff;
+    }
+  }
   &__container {
     max-width: 500px;
     min-height: 350px;
@@ -124,49 +145,65 @@
   -moz-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
+
+  .select-dropdown {
+    position: relative;
+    background-color: #e6e6e680;
+    width: auto;
+    float: left;
+    max-width: 100%;
+    border-radius: 2px;
+    select {
+      color: #333;
+      font-size: 1rem;
+      font-weight: 200;
+      max-width: 100%;
+      padding: 8px 24px 8px 10px;
+      border: none;
+      background-color: transparent;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      &:active,
+      &:focus {
+        outline: none;
+        box-shadow: none;
+      }
+    }
+    &:after {
+      content: " ";
+      position: absolute;
+      top: 50%;
+      margin-top: -2px;
+      right: 8px;
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 5px solid #333;
+    }
+  }
+
+  .completed-sessions {
+    margin-top: 20px;
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    opacity: 0.6;
+    margin-bottom: 4px;
+  }
+  .motivation-word {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 100;
+    color: white;
+    overflow-wrap: break-word;
+  }
 }
 
 .pomodoro.blue {
   background-color: rgb(69, 124, 163);
   .pomodoro__container {
     background-color: rgba(255, 255, 255, 0.1);
-  }
-}
-
-.select-dropdown {
-  position: relative;
-  background-color: #e6e6e680;
-  width: auto;
-  float: left;
-  max-width: 100%;
-  border-radius: 2px;
-  select {
-    color: #333;
-    font-size: 1rem;
-    font-weight: 200;
-    max-width: 100%;
-    padding: 8px 24px 8px 10px;
-    border: none;
-    background-color: transparent;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    &:active,
-    &:focus {
-      outline: none;
-      box-shadow: none;
-    }
-  }
-  &:after {
-    content: " ";
-    position: absolute;
-    top: 50%;
-    margin-top: -2px;
-    right: 8px;
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 5px solid #333;
   }
 }
