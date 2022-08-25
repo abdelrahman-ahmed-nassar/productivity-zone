@@ -40,9 +40,9 @@ const Home = () => {
             ></img>
           )}
           <p className={classes["slogan"]}>
-            own your life by managing your time.
+            Focus on being productive Not busy
           </p>
-          <p>use our Time management tools to organize and mange your time </p>
+          <p>use our Time management tools to increase your productivity </p>
           <a className={classes["hero-cta"]} href="#services">
             start now
           </a>
