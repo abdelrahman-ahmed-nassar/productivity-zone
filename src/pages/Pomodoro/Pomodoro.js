@@ -88,7 +88,11 @@ const Pomodoro = () => {
   }, [progress]);
 
   useEffect(() => {
-    setProgress(100 - (timer / pomodoroTime) * 100);
+    if (isTakingShortBreak) {
+      setProgress(100 - (timer / breakTime) * 100);
+    } else {
+      setProgress(100 - (timer / pomodoroTime) * 100);
+    }
   }, [timer, pomodoroTime]);
 
   return (
